@@ -6,7 +6,23 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="690d09fa-b7bc-4bf2-a6e3-bfb8df6f969d" name="Default Changelist" comment="" />
+    <list default="true" id="690d09fa-b7bc-4bf2-a6e3-bfb8df6f969d" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/ql_san_pham1_war_exploded/WEB-INF/classes/controller/ProductServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/ql_san_pham1_war_exploded/WEB-INF/classes/controller/ProductServlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/ql_san_pham1_war_exploded/WEB-INF/classes/service/ProductServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/ql_san_pham1_war_exploded/WEB-INF/classes/service/ProductServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/ql_san_pham1_war_exploded/product/create.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/ql_san_pham1_war_exploded/product/create.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/ql_san_pham1_war_exploded/product/edit.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/ql_san_pham1_war_exploded/product/edit.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/ql_san_pham1_war_exploded/product/list.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/ql_san_pham1_war_exploded/product/list.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/ql_san_pham1_war_exploded/product/view.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/ql_san_pham1_war_exploded/product/view.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ql-san-pham1/controller/ProductServlet.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ql-san-pham1/controller/ProductServlet.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ql-san-pham1/service/ProductServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ql-san-pham1/service/ProductServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/controller/ProductServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/controller/ProductServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/service/ProductServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/service/ProductServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/product/create.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/product/create.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/product/edit.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/product/edit.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/product/list.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/product/list.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/product/view.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/web/product/view.jsp" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,6 +38,9 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="LogFilters">
     <option name="FILTER_ERRORS" value="false" />
     <option name="FILTER_WARNINGS" value="false" />
@@ -30,7 +49,10 @@
     <option name="CUSTOM_FILTER" />
   </component>
   <component name="ProjectId" id="1QUhQaFWG3rTEzczKV3GU6FhlQn" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="ToolWindowDebug.ShowToolbar" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
@@ -40,6 +62,7 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/web/pictures" />
       <recent name="$PROJECT_DIR$/web/product" />
     </key>
   </component>
@@ -203,11 +226,27 @@
       <option name="presentableId" value="Default" />
       <updated>1567831066936</updated>
       <workItem from="1567831074096" duration="3647000" />
-      <workItem from="1567836007143" duration="6473000" />
+      <workItem from="1567836007143" duration="14981000" />
+      <workItem from="1567853568167" duration="1007000" />
+      <workItem from="1567990581387" duration="382000" />
+      <workItem from="1567992215419" duration="2716000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

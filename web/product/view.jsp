@@ -18,7 +18,8 @@
     <tr><td>Price: </td><td>${requestScope['product'].getPrice()}</td></tr>
     <tr><td>Description: </td><td>${requestScope['product'].getDescription()}</td></tr>
     <tr><td>Supplier: </td><td>${requestScope['product'].getSupplier()}</td></tr>
-    <tr><td>Picture: </td><td><img src = "${product.getPicture()}" width="100px" height="100px" ></td></tr>
+    <tr><td>Picture: </td><td><img src="<%=request.getContextPath()%>/pictures/${requestScope["product"].getPicture()}" height="100px"
+                                   width="100px"/></td></tr>
 </table>
 </body>
 </html>

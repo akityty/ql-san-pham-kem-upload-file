@@ -11,7 +11,7 @@
     <title>Title</title>
 </head>
 <body>
-<form method="post">
+<form method="post" enctype="multipart/form-data">
     <c:if test="${requestScope['message']!=null}">
         <span style="color: green">${requestScope['message']}</span>
     </c:if>
@@ -24,7 +24,7 @@
         <tr><td>Price: </td><td><input type="text" name="price" id="price"></td></tr>
         <tr><td>Description: </td><td><input type="text" name="description" id="description"></td></tr>
         <tr><td>Supplier: </td><td><input type="text" name="supplier" id="supplier"></td></tr>
-        <tr><td>Image: </td><td><input type="text" name="image" id="image"></td></tr>
+        <tr><td>Picture: </td><td><input type="file" name="picture" id="picture"></td></tr>
         <tr><td><input type="submit" value="Create"></td></tr>
     </table>
 </form>

@@ -10,8 +10,11 @@ import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
+
 
 @WebServlet(name = "ProductServlet", urlPatterns = "/products")
 //---------------------------------------------------------------
@@ -22,7 +25,7 @@ public class ProductServlet extends javax.servlet.http.HttpServlet {
   //-----------------------------------------------------------------------------
   private static final long serialVersionUID = 1L;
 
-  public static final String SAVE_DIRECTORY = "images";
+  public static final String SAVE_DIRECTORY = "pictures";
 
   public ProductServlet() {
     super();
@@ -83,25 +86,51 @@ public class ProductServlet extends javax.servlet.http.HttpServlet {
     }
   }
 
-  private void editProduct(HttpServletRequest request, HttpServletResponse response) {
-    int id = Integer.parseInt(request.getParameter("id"));
-    int price = Integer.parseInt(request.getParameter("price"));
-    String description = request.getParameter("description");
-    String supplier = request.getParameter("supplier");
-    String picture = request.getParameter("picture");
-    Product product = this.productService.findById(id);
+  private void editProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException {
     RequestDispatcher dispatcher;
-    if (product == null) {
-      dispatcher = request.getRequestDispatcher("error-404.jsp");
-    } else {
+    try {
+      int id = Integer.parseInt(request.getParameter("id"));
+      String name = request.getParameter("name");
+      int price = Integer.parseInt(request.getParameter("price"));
+      String description = request.getParameter("description");
+      String supplier = request.getParameter("supplier");
+      String picture = "";
+
+      String appPath = request.getServletContext().getRealPath("");
+      appPath = appPath.replace('\\', '/');
+      String fullSavePath = null;
+      if (appPath.endsWith("/")) {
+        fullSavePath = appPath + SAVE_DIRECTORY;
+      } else {
+        fullSavePath = appPath + "/" + SAVE_DIRECTORY;
+      }
+      File fileSaveDir = new File(fullSavePath);
+      if (!fileSaveDir.exists()) {
+        fileSaveDir.mkdir();
+      }
+      for (Part part : request.getParts()) {
+        String fileName = extractFileName(part);
+        if (fileName != null && fileName.length() > 0) {
+          String filePath = fullSavePath + File.separator + fileName;
+          part.write(filePath);
+          picture = fileName;
+        }
+      }
+
+
+      Product product = this.productService.findById(id);
+      product.setId(id);
+      product.setName(name);
       product.setPrice(price);
       product.setDescription(description);
       product.setSupplier(supplier);
-      product.setPicture(picture);
-      this.productService.save(product);
-      request.setAttribute("product", product);
-      request.setAttribute("message", "product was edited");
+      if (picture!="") product.setPicture(picture);
+      this.productService.update(id, product);
+      request.setAttribute("product",product);
+      request.setAttribute("message", "Product information was updated");
       dispatcher = request.getRequestDispatcher("product/edit.jsp");
+    } catch (NumberFormatException | IOException e) {
+      dispatcher = request.getRequestDispatcher("error-404.jsp");
     }
     try {
       dispatcher.forward(request, response);
@@ -111,21 +140,70 @@ public class ProductServlet extends javax.servlet.http.HttpServlet {
   }
 
   private void createProduct(HttpServletRequest request, HttpServletResponse response) {
-    int id = Integer.parseInt(request.getParameter("id"));
     String name = request.getParameter("name");
-    int price = Integer.parseInt(request.getParameter("price"));
-    String description = request.getParameter("description");
-    String supplier = request.getParameter("supplier");
-    String image = request.getParameter("image");
-    Product product = new Product(id, name, price, description, supplier, image);
-    productService.save(product);
-    request.setAttribute("message", "new Product was created");
-    RequestDispatcher dispatcher = request.getRequestDispatcher("product/create.jsp");
+    int price;
+    String description;
+    String supplier;
+    String picture = "";
+    RequestDispatcher dispatcher;
+
+    try {
+      price = Integer.parseInt(request.getParameter("price"));
+      description = request.getParameter("description");
+      supplier = request.getParameter("supplier");
+      String appPath = request.getServletContext().getRealPath("");
+      appPath = appPath.replace('\\', '/');
+      String fullSavePath = null;
+      if (appPath.endsWith("/")) {
+        fullSavePath = appPath + SAVE_DIRECTORY;
+      } else {
+        fullSavePath = appPath + "/" + SAVE_DIRECTORY;
+      }
+      File fileSaveDir = new File(fullSavePath);
+      if (!fileSaveDir.exists()) {
+        fileSaveDir.mkdir();
+      }
+      for (Part part : request.getParts()) {
+        String fileName = extractFileName(part);
+        if (fileName != null && fileName.length() > 0) {
+          String filePath = fullSavePath + File.separator + fileName;
+          System.out.println("Write attachment to file: " + filePath);
+
+          part.write(filePath);
+          picture = fileName;
+        }
+      }
+      int id = (int) (Math.random() * 100000);
+
+      Product product = new Product(id, name, price, description, supplier, picture);
+      this.productService.save(product);
+      dispatcher = request.getRequestDispatcher("product/create.jsp");
+      request.setAttribute("message", "New product was created");
+    } catch (NumberFormatException | IOException | ServletException e) {
+      dispatcher = request.getRequestDispatcher("error-404.jsp");
+    }
     try {
       dispatcher.forward(request, response);
     } catch (ServletException | IOException e) {
       e.printStackTrace();
     }
+  }
+
+  private String extractFileName(Part part) {
+
+    String contentDisp = part.getHeader("content-disposition");
+    String[] items = contentDisp.split(";");
+    for (String s : items) {
+      if (s.trim().startsWith("filename")) {
+
+        String clientFileName = s.substring(s.indexOf("=") + 2, s.length() - 1);
+        clientFileName = clientFileName.replace("\\", "/");
+        int i = clientFileName.lastIndexOf('/');
+
+        return clientFileName.substring(i + 1);
+      }
+    }
+    return null;
   }
 
   protected void doGet(javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response) throws javax.servlet.ServletException, IOException {
@@ -206,4 +284,24 @@ public class ProductServlet extends javax.servlet.http.HttpServlet {
       e.printStackTrace();
     }
   }
-}
+
+ /* private String extractFileName(Part part) {
+    // form-data; name="file"; filename="C:\file1.zip"
+    // form-data; name="file"; filename="C:\Note\file2.zip"
+    String contentDisp = part.getHeader("content-disposition");
+    String[] items = contentDisp.split(";");
+    for (String s : items) {
+      if (s.trim().startsWith("filename")) {
+        // C:\file1.zip
+        // C:\Note\file2.zip
+        String clientFileName = s.substring(s.indexOf("=") + 2, s.length() - 1);
+        clientFileName = clientFileName.replace("\\", "/");
+        int i = clientFileName.lastIndexOf('/');
+        // file1.zip
+        // file2.zip
+        return clientFileName.substring(i + 1);
+      }
+    }
+    return null;
+  }*/
+  }

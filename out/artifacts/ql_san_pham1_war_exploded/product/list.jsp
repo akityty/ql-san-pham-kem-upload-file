@@ -39,7 +39,7 @@
             <td>${product.getPrice()}</td>
             <td>${product.getDescription()}</td>
             <td>${product.getSupplier()}</td>
-            <td><img src = "${product.getPicture()}" width="100px" height="100px" ></td>
+            <td><img src="<%=request.getContextPath()%>/pictures/${product.getPicture()}" width="100px" height="100px"></td>
             <td><a href="products?action=edit&id=${product.getId()}">edit</a></td>
             <td><a href="products?action=delete&id=${product.getId()}">delete</a> </td>
         </tr>

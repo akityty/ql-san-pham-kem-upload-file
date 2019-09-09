@@ -13,15 +13,15 @@ public class ProductServiceImpl implements ProductService {
   static {
     products = new HashMap<>();
 
-    products.put(1, new Product(1, "Note 10", 25000000, "use pen", "Samsung", "https://cdn.fptshop.com.vn/Uploads/Originals/2019/8/8/637008711602926121_SS-note-10-pl-den-1-1.png"));
+    products.put(1, new Product(1, "Note 10", 25000000, "use pen", "Samsung", "1.jpeg"));
 
-    products.put(2, new Product(2, "Iphone XS Max 256GB", 20000000, " not use pen", "Iphone", "https://images.fpt.shop/unsafe/fit-in/200x200/filters:quality(90):fill(white)/cdn.fptshop.com.vn/Uploads/Originals/2019/8/1/637002351614380313_636749593270587915_iphoneXS-1o.png"));
+    products.put(2, new Product(2, "Iphone XS Max 256GB", 20000000, " not use pen", "Iphone", "2.jpeg"));
 
-    products.put(3, new Product(3, "Iphone7", 15, "description", "supplier", "https://cdn.tgdd.vn/Products/Images/7498/200439/midea-ac100-18b-300x300.jpg"));
+    products.put(3, new Product(3, "Iphone7", 15, "description", "supplier", "3.jpeg"));
 
-    products.put(4, new Product(4, "Iphone7", 15, "description", "supplier", "https://cdn.tgdd.vn/Products/Images/1922/92601/toshiba-rc-18nmfvn-wt-daidien-300x300.jpg"));
+    products.put(4, new Product(4, "Iphone7", 15, "description", "supplier", "5.jpeg"));
 
-    products.put(5, new Product(5, "Iphone7", 15, "description", "supplier", "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6196/6196727_sd.jpg"));
+    products.put(5, new Product(5, "Iphone7", 15, "description", "supplier", "5.jpeg"));
 
   }
 
